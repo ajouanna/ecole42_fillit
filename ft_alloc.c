@@ -6,7 +6,7 @@
 /*   By: ajouanna <ajouanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 12:11:40 by ajouanna          #+#    #+#             */
-/*   Updated: 2016/11/18 14:01:02 by ajouanna         ###   ########.fr       */
+/*   Updated: 2016/11/18 15:39:02 by ajouanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,26 @@ char				*ft_realloc_str(char *old, int increase)
 
 /*
 ** realloue un tableau de char * termine par NULL et ajoute str a la fin
+** NB : le cas ou old est NULL est pris en compte
 */
 
 char				**ft_realloc_strtab(char **old, char *str)
 {
 	char			**new;
 	int				i;
+	int 			size_tab;
 
-	i = 0;
-	while (old[i])
-		i++;
-	if ((new = malloc(sizeof(char*) * (i +  1 + 1))) == NULL)
+	size_tab = 0;
+	if (old)
+	{
+		while (old[size_tab])
+			size_tab++;
+	}
+
+	if ((new = malloc(sizeof(char*) * (size_tab +  1 + 1))) == NULL)
 		return (NULL);
 	i = 0;
-	while (old[i])
+	while (i < size_tab)
 	{
 		new[i] = old[i];
 		i++;

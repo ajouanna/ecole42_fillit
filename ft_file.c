@@ -6,7 +6,7 @@
 /*   By: ajouanna <ajouanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 12:08:44 by ajouanna          #+#    #+#             */
-/*   Updated: 2016/11/18 14:45:55 by ajouanna         ###   ########.fr       */
+/*   Updated: 2016/11/18 15:28:46 by ajouanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,23 @@
 #include <fcntl.h>
 #include "libft.h"
 #include "ft_fillit.h"
+
+/*
+** 
+*/
+
+void display_tetra(t_tetra *tetra)
+{
+	int i;
+
+	i = 0;
+	while (i < 4)
+	{
+		ft_putstr(tetra->tab[i]);
+		ft_putstr("\n");
+		i++;
+	}
+}
 
 /*
 ** Read character by character from fd until next line
@@ -52,7 +69,7 @@ char				*ft_get_line(int fd)
 ** on verifie aue le format du tetraminos est correct
 */
 
-int     check_format(char **tab)
+int     check_format(t_tetra *tab)
 {
 	(void)tab;
 	return (0);
@@ -62,24 +79,29 @@ int     check_format(char **tab)
 ** lecture du fichier et remplissage du tableau
 */
 
-int	lecture_fichier(char *filename, char **tab)
+int	lecture_fichier(char *filename, t_tetra *tab)
 {
 	int fd;
 	char *line;
+	char **strtab;
 
 	if ((fd = open(filename, O_RDONLY)) == -1)
 	{
 		ft_putstr_fd("Error opening file.\n", 2);
 		return (0);
 	}
-	return (1);
+	strtab = NULL;
 	while ((line = ft_get_line(fd)))
 	{
-		if ((tab = ft_realloc_strtab(tab, line)) == NULL)
+		if ((strtab = ft_realloc_strtab(strtab, line)) == NULL)
 		{
-			ft_putstr_fd("Malloc error\n", 2);
+			ft_putstr_fd("malloc error\n", 2);
 			return (0);
 		}
+	}
+	if ((close(fd)) == -1)
+	{
+			ft_putstr_fd("close error\n", 2);
 	}
 	return (check_format(tab));
 }
