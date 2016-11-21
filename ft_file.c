@@ -6,7 +6,7 @@
 /*   By: ajouanna <ajouanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 12:08:44 by ajouanna          #+#    #+#             */
-/*   Updated: 2016/11/18 15:28:46 by ajouanna         ###   ########.fr       */
+/*   Updated: 2016/11/21 16:04:56 by ajouanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,21 @@
 ** 
 */
 
-void display_tetra(t_tetra *tetra)
+void display_tetri(t_tetri *tetri)
 {
 	int i;
+	int j;
 
 	i = 0;
 	while (i < 4)
 	{
-		ft_putstr(tetra->tab[i]);
+		j = 0;
+		while (j < 4)
+		{
+			ft_putnbr(tetri->tab[i][j]);
+			ft_putchar(' ');
+			j++;
+		}
 		ft_putstr("\n");
 		i++;
 	}
@@ -66,10 +73,10 @@ char				*ft_get_line(int fd)
 
 
 /*
-** on verifie aue le format du tetraminos est correct
+** on verifie aue le format du tetriminos est correct
 */
 
-int     check_format(t_tetra *tab)
+int     check_format(t_tetri *tab)
 {
 	(void)tab;
 	return (0);
@@ -79,7 +86,7 @@ int     check_format(t_tetra *tab)
 ** lecture du fichier et remplissage du tableau
 */
 
-int	lecture_fichier(char *filename, t_tetra *tab)
+int	lecture_fichier(char *filename, t_tetri *tab)
 {
 	int fd;
 	char *line;
