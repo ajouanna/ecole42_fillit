@@ -50,18 +50,19 @@ int	main(int argc, char **argv)
 	if ((tab = (t_tetri *)malloc(sizeof(t_tetri))) == NULL)
 	{
 		ft_putstr_fd("malloc failed", 2);
+		ft_putstr("error\n");
 		return (0);
 	}
 	if (!lecture_fichier(argv[1], tab))
 	{
 		free(tab);
-		ft_putstr_fd("error\n", 2);
+		ft_putstr("error\n");
 		return (0);
 	}
 	if (!ft_fillit(tab))
 	{
 		free(tab);
-		ft_putstr_fd("error\n", 2);
+		ft_putstr("error\n");
 		return (0);
 	}
 	return (1);
