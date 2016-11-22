@@ -6,12 +6,29 @@
 /*   By: ajouanna <ajouanna@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/18 11:29:12 by ajouanna          #+#    #+#             */
-/*   Updated: 2016/11/21 16:06:00 by ajouanna         ###   ########.fr       */
+/*   Updated: 2016/11/22 17:17:54 by ajouanna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_fillit.h"
+
+/*
+** calcul de l'entier lsuperieur le plus proche de la racine carree d'un int
+** NB : cette fonction ne marche pas au de de racine carree de maxint 
+*/
+
+static int	sqrt_aprox(int nb)
+{
+	int i;
+
+   	i = 0;
+   	if (nb <= 0)
+   		return (0);
+	while (i * i < nb)
+   		i++;
+	return (i);
+}
 
 /*
 ** analyse le tableau et cherche la solution au Tetriminos
